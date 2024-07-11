@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+    <div class="max-w-md mx-auto bg-white m-5 p-5 rounded shadow-md todoDiv">
+        <h1 class="text-2xl font-bold mb-4">Todo List</h1>
+        <input type="text" id="todo-input" class="border p-2 w-full mb-4" placeholder="Enter todo name...">
+        <button id="add-todo" class="bg-blue-500 hover:bg-blue-300 text-white px-4 py-2 transform hover:scale-90 rounded">Add Todo</button>
+        <div class="mt-4">
+            <select id="filter-todos" class="border p-2 w-full">
+                <option value="all">All Todos</option>
+                <option value="completed">Completed Todos</option>
+                <option value="incomplete">Incomplete Todos</option>
+                <option value="deleted">Deleted Todos</option>
+            </select>
+        </div>
+        <ul id="todo-list" class="mt-4 space-y-2"></ul>
+    </div>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="./script/app.js"></script>
+</body>
+</html>
