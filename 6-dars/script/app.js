@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const todoList = todoDiv.querySelector('#todo-list')
     const filterTodos = todoDiv.querySelector('#filter-todos')
 
-    let todos = []
-    let deletedTodos = []
+    let todos = JSON.parse(localStorage.getItem('todos')) || []
+    let deletedTodos = JSON.parse(localStorage.getItem('deletedTodos')) || []
     let filter = 'all'
 
     addTodoButton.addEventListener('click', () => {
@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         todos.push(todo)
+        saveTodos()
         renderTodos()
         todoInput.value = ''
         window.alert('Todo successfully added')
@@ -39,6 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
         filter = e.target.value
         renderTodos()
     })
+
+    function saveTodos() {
+        localStorage.setItem('todos', JSON.stringify(todos))
+        localStorage.setItem('deletedTodos', JSON.stringify(deletedTodos))
+    }
 
     function renderTodos() {
         todoList.innerHTML = ''
@@ -79,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     deletedTodos.push(deletedTodo)
                     window.alert('Todo successfully deleted')
                 }
+                saveTodos()
                 renderTodos()
             })
         })
@@ -87,9 +94,12 @@ document.addEventListener('DOMContentLoaded', () => {
             button.addEventListener('click', (e) => {
                 const index = e.target.getAttribute('data-index')
                 todos[index].completed = !todos[index].completed
+                saveTodos()
                 renderTodos()
                 window.alert('Todo successfully completed')
             })
         })
     }
+
+    renderTodos()
 });
